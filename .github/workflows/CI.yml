@@ -29,9 +29,8 @@ jobs:
           - name: pass the variable
             id: pass
             run: |
-                $out = get-content ${{github.workspace}}\LoG\log.txt
-                write-host $out
-                "script_file=$out">>$env:GITHUB_OUTPUT
+                $out = "Geetha"
+                write-output "script_file=$out">>$env:GITHUB_OUTPUT
     Deployment:
          needs: testing
          runs-on: windows-latest         
