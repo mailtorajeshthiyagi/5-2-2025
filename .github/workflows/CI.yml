@@ -28,7 +28,7 @@ jobs:
                   ${{github.workspace}}\LoG
           - name: pass the variable
             id: pass
-            run:
+            run: |
                 $out = get-content ${{github.workspace}}\LoG\log.txt
                 WRITE-OUTPUT script_file=$out >> $env:GITHUB_OUT 
     Deployment:
