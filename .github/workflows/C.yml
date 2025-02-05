@@ -12,6 +12,8 @@ jobs:
         steps:
           - name: testing Envname
             run: write-host $env:Welcome
+          - name: check out repo
+            uses: actions/checkout@v4
           - name : check cache folder1
             run:  npm config get cache
           - name : configure npm cache
