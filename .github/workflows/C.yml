@@ -32,11 +32,11 @@ jobs:
                npm config set cache C:\npm\cache --global
                npm install          
 
-        deploy:
-           runs-on: windows-latest
-           needs: testing  # Ensure deploy waits for testing to complete
-            steps:
-           - name: Check Cache Hit in Deploy
-             run: | 
-                write-host "Cache hit status: ${{ needs.testing.outputs.cache-hit }}"
+    deploy:
+      needs: testing  # Ensure deploy waits for testing to complete
+      runs-on: windows-latest
+      steps:
+         - name: Check Cache Hit in Deploy
+           run: | 
+              write-host "Cache hit status: ${{ needs.testing.outputs.cache-hit }}"
 
