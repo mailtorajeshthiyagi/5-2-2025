@@ -29,7 +29,7 @@ jobs:
           - name: pass the variable
             id: pass
             run: |
-                $out = "Geetha"
+                $out = GET-CONTENT ${{github.workspace}}\LoG\log.txt
                 write-output "script_file=$out">>$env:GITHUB_OUTPUT
     Deployment:
          needs: testing
