@@ -18,7 +18,7 @@ jobs:
           - name: create log folder
             run: |
                 new-item  -path ${{github.workspace}} -name "LoG" -itemtype directory
-                $env:welcome |write-output ${{github.workspace}}\LoG\log.txt 
+                $env:welcome |out-file ${{github.workspace}}\LoG\log.txt 
           - name: upload artifact
             uses: actions/upload-artifact@v4
             with:
