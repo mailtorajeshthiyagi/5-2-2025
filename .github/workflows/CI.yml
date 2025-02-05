@@ -1,0 +1,15 @@
+name: deployment
+on: 
+    push:
+     branches:
+         - master
+         - dev
+    workflow_dispatch:
+jobs:
+    testing:
+        runs-on: windows-latest
+        env: 
+            servername: "Rajesh"
+        steps:
+          - name: testing Envname
+            run: write-host $env:servername
