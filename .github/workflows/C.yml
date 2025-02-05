@@ -47,6 +47,20 @@ jobs:
       needs: testing  # Ensure deploy waits for testing to complete
       runs-on: windows-latest
       steps:
+         - name : check repo
+           uses: actions/checkout@v4
+         - name: set cache path 
+           run : npm config set cache ${{ runner.temp }}\npm-cache --global
+         - name : configure npm cache
+           uses: actions/cache@v4
+           id: savecache
+           with:                            
+               path: ${{ runner.temp }}\npm-cache
+               key: npm-cache-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+               restore-keys: |
+                   npm-cache-${{ runner.os }}-
+         - name : Print npm Cache Path
+           run: npm config get cache  
          - name: Check Cache Hit in Deploy
            run: | 
               write-host "Cache hit status: ${{ needs.testing.outputs.cache-hit }}"
