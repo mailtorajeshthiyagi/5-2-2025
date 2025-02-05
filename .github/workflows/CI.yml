@@ -14,7 +14,7 @@ jobs:
           - name: testing Envname
             run: write-host $env:Welcome
           - name: check repository
-            uses: actions/check-out@v4
+            uses: actions/checkout@v4
           - name: create log folder
             run: |
                 new-item  -path ${{github.workspace}} -name "LoG" -itemtype directory
@@ -29,7 +29,7 @@ jobs:
          runs-on: windows-latest         
          steps: 
            - name: check repository
-             uses: actions/check-out@v4
+             uses: actions/checkout@v4
            - name: "Wecome message"
              run: write-host $env:welcome
            - name: download artifact
