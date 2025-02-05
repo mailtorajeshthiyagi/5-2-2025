@@ -25,4 +25,6 @@ jobs:
                     nuget-${{ runner.os }}-
 
           - name : initiate install
-            run:  npm install          
+            run:  |
+               npm config set cache C:\npm\cache --global
+               npm install          
