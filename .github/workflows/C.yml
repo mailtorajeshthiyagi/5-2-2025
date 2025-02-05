@@ -28,8 +28,7 @@ jobs:
                     npm-cache-${{ runner.os }}-
 
           - name : initiate install
-            run:  |
-               npm config set cache C:\npm\cache --global
+            run:  |               
                npm install          
 
     deploy:
