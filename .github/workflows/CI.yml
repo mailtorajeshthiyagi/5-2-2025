@@ -37,6 +37,6 @@ jobs:
              with: 
                 path:  ${{github.workspace}}\LoG
            - name: List folders
-             run: get-childitem ${{github.workspace}}\LoG
+             run: get-childitem ${{github.workspace}}\LoG\artifact -recurse
 
               
