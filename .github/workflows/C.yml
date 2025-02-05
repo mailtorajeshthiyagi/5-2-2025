@@ -36,6 +36,8 @@ jobs:
                 key: npm-cache-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
                 restore-keys: |
                     npm-cache-${{ runner.os }}-
+          - name : Print npm Cache Path
+            run: npm config get cache
 
           - name : initiate install
             run:  |               
