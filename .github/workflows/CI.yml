@@ -31,7 +31,7 @@ jobs:
             run: |
                 $out = get-content ${{github.workspace}}\LoG\log.txt
                 write-host $out
-                "script_file=$out">>$env:GITHUB_OUT 
+                "script_file=$out">>$env:GITHUB_OUTPUT
     Deployment:
          needs: testing
          runs-on: windows-latest         
@@ -47,7 +47,7 @@ jobs:
            - name: List folders
              run: get-childitem ${{github.workspace}}\LoG\artifact -recurse
            - name : Check the testing variable
-             run:  write-host ${{needs.testing.outputs.script_file}}
+             run:  write-host ${{needs.testing.outputs.script_file.GITHUB_OUTPUT}}
              
 
               
