@@ -5,11 +5,12 @@ on:
          - master
          - dev
     workflow_dispatch:
+env: 
+     Welcome: "Welcome to git Traning!!!!!!!!!"
+    
 jobs:
     testing:
         runs-on: windows-latest
-        env: 
-            Welcome: "Welcome to git Traning!!!!!!!!!"
         outputs:
             script_file: ${{steps.pass.outputs.script_file}}
         steps:
