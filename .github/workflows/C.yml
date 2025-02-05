@@ -8,7 +8,9 @@ env:
      Welcome: "Welcome to git Traning!!!!!!!!!"    
 jobs:
     testing:
-        runs-on: windows-latest      
+        runs-on: windows-latest  
+        outputs:
+            cache-key: ${{steps.savecache.outputs.cache-hit}}
         steps:
           - name: testing Envname
             run: write-host $env:Welcome
@@ -18,13 +20,15 @@ jobs:
             run:  npm config get cache
           - name : configure npm cache
             uses: actions/cache@v4
-            with:
+            id: savecache
+            with:              
               path: C:\npm\cache  # Example for NuGet
               key: nuget-${{ runner.os }}-${{ hashFiles('**/packages.config') }}
               restore-keys: |
                     nuget-${{ runner.os }}-
-
           - name : initiate install
             run:  |
                npm config set cache C:\npm\cache --global
                npm install          
+          - name : check NPM cache folder
+            run:   write-host ${{steps.savecache.outputs.cache-hit}}
