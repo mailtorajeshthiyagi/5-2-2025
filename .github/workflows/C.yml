@@ -10,7 +10,7 @@ jobs:
     testing:
         runs-on: windows-latest  
         outputs:
-            cache-key: ${{steps.savecache.outputs.cache-hit}}
+            cache-hit: ${{steps.savecache.outputs.cache-hit}}
         steps:
           - name: testing Envname
             run: write-host $env:Welcome
@@ -22,13 +22,21 @@ jobs:
             uses: actions/cache@v4
             id: savecache
             with:              
-              path: C:\npm\cache  # Example for NuGet
-              key: nuget-${{ runner.os }}-${{ hashFiles('**/packages.config') }}
-              restore-keys: |
-                    nuget-${{ runner.os }}-
+                path: ${{ runner.temp }}/npm-cache
+                key: npm-cache-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+                restore-keys: |
+                    npm-cache-${{ runner.os }}-
+
           - name : initiate install
             run:  |
                npm config set cache C:\npm\cache --global
                npm install          
-          - name : check NPM cache folder
-            run:   write-host ${{steps.savecache.outputs.cache-hit}}
+
+        deploy:
+           runs-on: windows-latest
+           needs: testing  # Ensure deploy waits for testing to complete
+            steps:
+           - name: Check Cache Hit in Deploy
+             run: | 
+                write-host "Cache hit status: ${{ needs.testing.outputs.cache-hit }}"
+
