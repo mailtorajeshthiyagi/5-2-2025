@@ -20,7 +20,7 @@ jobs:
                 new-item  -path ${{github.workspace}} -name "LoG" -itemtype directory
                 $env:welcome |write-output ${{github.workspace}}\LoG\log.txt 
           - name: upload artifact
-            uses: actions/upload-artificat@v4
+            uses: actions/upload-artifact@v4
             with:
                 path:    
                   ${{github.workspace}}\LoG
@@ -32,7 +32,7 @@ jobs:
              uses: actions/check-out@v4
            - name: "Wecome message"
              run: write-host $env:welcome
-           - name: download artifacts
+           - name: download artifact
              uses: actions/download-artifact@v4
              with: 
                 path:  ${{github.workspace}}\LoG
