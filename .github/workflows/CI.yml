@@ -30,7 +30,8 @@ jobs:
             id: pass
             run: |
                 $out = get-content ${{github.workspace}}\LoG\log.txt
-                WRITE-OUTPUT script_file=$out >> $env:GITHUB_OUT 
+                write-host $out
+                "script_file=$out">>$env:GITHUB_OUT 
     Deployment:
          needs: testing
          runs-on: windows-latest         
