@@ -9,7 +9,12 @@ jobs:
     testing:
         runs-on: windows-latest
         env: 
-            servername: "Rajesh"
+            Welcome: "Welcome to git Traning!!!!!!!!!"
         steps:
           - name: testing Envname
-            run: write-host $env:servername
+            run: write-host $env:Welcome
+          - name: create log folder
+            run: |
+               write-host "${{github.workspace}}"
+               new-item  -path ${{github.workspace}} -name "LoG" -itemtype directory
+               get-childitem ${{github.workspace}} -recurse
