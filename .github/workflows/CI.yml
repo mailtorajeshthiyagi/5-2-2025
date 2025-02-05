@@ -46,7 +46,7 @@ jobs:
            - name: List folders
              run: get-childitem ${{github.workspace}}\LoG\artifact -recurse
            - name : Check the testing variable
-             run:  write-host ${{needs.testing.outputs.script_file.GITHUB_OUTPUT}}
+             run:  write-host ${{needs.testing.outputs.script_file}}
              
 
               
